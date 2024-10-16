@@ -9,7 +9,7 @@ CREATE TABLE Roles (
     RoleName VARCHAR(50) NOT NULL
 );
 
--- Tạo bảng Người Dùng
+-- ユーザー
 CREATE TABLE Users (
     UserID INT IDENTITY PRIMARY KEY,
     Username VARCHAR(50) NOT NULL UNIQUE,
@@ -18,7 +18,7 @@ CREATE TABLE Users (
     FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
 );
 
--- Tạo bảng Khách Hàng
+-- Customers
 CREATE TABLE Customers (
     CustomerID INT IDENTITY PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE Customers (
     Email NVARCHAR(255)
 );
 
--- Tạo bảng Nhà Cung Cấp
+-- Suppliers
 CREATE TABLE Suppliers (
     SupplierID INT IDENTITY PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE Suppliers (
     Email NVARCHAR(255)
 );
 
--- Tạo bảng Sản Phẩm
+-- 商品
 CREATE TABLE Products (
     ProductID INT IDENTITY PRIMARY KEY,
     ProductName NVARCHAR(255) NOT NULL,
@@ -48,16 +48,14 @@ CREATE TABLE Products (
 
 INSERT INTO Products (ProductName, Price)
 VALUES 
-('iPhone 14', 999.99),
-('Samsung Galaxy S23', 899.99),
-('MacBook Pro 16', 2399.99),
-('Dell XPS 13', 1299.99),
-('Men''s T-Shirt', 19.99),
-('Women''s Jeans', 49.99);
+('ブンチャー', 1000),
+('バンミー', 990),
+('フォー', 1050);
 
 
 
--- Tạo bảng Đơn Hàng
+
+-- オーダー
 CREATE TABLE Orders (
     OrderID INT IDENTITY PRIMARY KEY,
     CustomerID INT,
@@ -67,7 +65,7 @@ CREATE TABLE Orders (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
--- Tạo bảng Chi Tiết Đơn Hàng
+-- 詳細オーダー
 CREATE TABLE OrderDetails (
     OrderDetailID INT IDENTITY PRIMARY KEY,
     OrderID INT,
@@ -79,7 +77,7 @@ CREATE TABLE OrderDetails (
     FOREIGN KEY (ProductID) REFERENCES Products(ProductID)
 );
 
--- Tạo bảng Nhân Viên
+-- Employees
 CREATE TABLE Employees (
     EmployeeID INT IDENTITY PRIMARY KEY,
     UserID INT,
@@ -102,7 +100,7 @@ CREATE TABLE ProductReviews (
     FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
 );
 
--- Tạo bảng Lịch Sử Đơn Hàng
+-- OrderHistory
 CREATE TABLE OrderHistory (
     OrderHistoryID INT IDENTITY PRIMARY KEY,
     OrderID INT,
@@ -111,7 +109,7 @@ CREATE TABLE OrderHistory (
     FOREIGN KEY (OrderID) REFERENCES Orders(OrderID)
 );
 
--- Tạo bảng Mục Đơn Hàng
+-- OrderItems
 CREATE TABLE OrderItems (
     OrderItemID INT IDENTITY PRIMARY KEY,
     ProductName NVARCHAR(255) NOT NULL,
