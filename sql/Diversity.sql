@@ -3,7 +3,7 @@ GO
 USE Diversity
 GO
 
--- Tạo bảng Vai Trò
+-- 役割　テブル
 CREATE TABLE Roles (
     RoleID INT IDENTITY PRIMARY KEY,
     RoleName VARCHAR(50) NOT NULL
